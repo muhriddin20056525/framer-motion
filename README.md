@@ -8,10 +8,10 @@
 
 ---
 
-| Mundarija                                  |
-| ------------------------------------------ |
-| [1-dars Project Setup][1-dars]             |
-| [2-dars 2-dars Animating Elements][2-dars] |
+| Mundarija                           |
+| ----------------------------------- |
+| [1-dars Project Setup][1-dars]      |
+| [2-dars Animating Elements][2-dars] |
 
 [1-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#1-dars-project-setup
 [2-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#2-dars-animating-elements
