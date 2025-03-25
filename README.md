@@ -8,13 +8,15 @@
 
 ---
 
-| Mundarija                           |
-| ----------------------------------- |
-| [1-dars Project Setup][1-dars]      |
-| [2-dars Animating Elements][2-dars] |
+| Mundarija                                |
+| ---------------------------------------- |
+| [1-dars Project Setup][1-dars]           |
+| [2-dars Animating Elements][2-dars]      |
+| [3-dars Initial Animation State][3-dars] |
 
 [1-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#1-dars-project-setup
 [2-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#2-dars-animating-elements
+[3-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#3-dars-initial-animation-state
 
 ---
 
@@ -110,3 +112,55 @@ import { motion } from "framer-motion";
 
 - Dastlab komponent ekrandan tashqarida (`x: "-100vw", ya’ni butun ekran kengligi bo‘ylab chapga siljigan`).
 - Animatsiya orqali `x: 0` ga harakatlanadi, ya’ni ekranga kirib keladi
+
+---
+
+## **4-dars Transition Options**
+
+`transition` Framer Motion da animatsiyaning davomiyligi, kechikishi va tezlashishini boshqarish uchun ishlatiladi.
+
+```jsx
+<motion.div
+  className="home container"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 1.5, duration: 1.5 }}
+>
+  <motion.h2>Welcome to Pizza Joint</motion.h2>
+  <Link to="/base">
+    <motion.button>Create Your Pizza</motion.button>
+  </Link>
+</motion.div>
+```
+
+- `transition={{ delay: 1.5, duration: 1.5 }}` – Animatsiya `1.5` soniya kechikib boshlanadi va `1.5` soniya davom etadi.
+  - `delay` Animatsiya boshlanishidan oldin qancha kechikishini belgilaydi.
+  - `duration` Animatsiya qancha davom etishini (sekundda) belgilaydi.
+  - `ease` Animatsiyaning tezlashish va sekinlashish usulini belgilaydi.
+  - `type` Animatsiya turini belgilaydi (spring, tween, keyframes).
+
+```jsx
+<motion.div
+  className="title"
+  initial={{ y: -250 }}
+  animate={{ y: -10 }}
+  transition={{ delay: 0.2, type: "tween" }}
+></motion.div>
+```
+
+- `type: "tween"` – Harakat barqaror tezlik bilan sodir bo‘ladi (prujinali tebranishsiz).
+- `type: "spring"` animatsiya tabiiy prujina effekti bilan bajarilardi.
+
+```jsx
+<motion.div
+  className="title"
+  initial={{ y: -250 }}
+  animate={{ y: -10 }}
+  transition={{ delay: 0.2, type: "spring", stiffness: 500 }}
+></motion.div>
+```
+
+- `stiffness: 500` - Prujina juda qattiq, tez va keskin harakat qiladi.
+  - `stiffness: 100` – Sekin va yumshoq tushadi.
+  - `stiffness: 500` – Juda tez va kuchli harakat qiladi.
+  - `stiffness: 1000` – Juda qattiq va deyarli tebranishsiz tushadi.
