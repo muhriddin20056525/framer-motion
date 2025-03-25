@@ -13,10 +13,12 @@
 | [1-dars Project Setup][1-dars]           |
 | [2-dars Animating Elements][2-dars]      |
 | [3-dars Initial Animation State][3-dars] |
+| [4-dars Transition Options][4-dars]      |
 
 [1-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#1-dars-project-setup
 [2-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#2-dars-animating-elements
 [3-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#3-dars-initial-animation-state
+[4-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#4-dars-transition-options
 
 ---
 
