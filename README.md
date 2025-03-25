@@ -164,3 +164,32 @@ import { motion } from "framer-motion";
   - `stiffness: 100` – Sekin va yumshoq tushadi.
   - `stiffness: 500` – Juda tez va kuchli harakat qiladi.
   - `stiffness: 1000` – Juda qattiq va deyarli tebranishsiz tushadi.
+
+---
+
+## **5-dars Hover Animations**
+
+```jsx
+<motion.button whileHover={{ scale: 1.1 }}>Create Your Pizza</motion.button>
+```
+
+- `whileHover={{ scale: 1.1 }}` – Tugma ustiga sichqoncha olib borilganda (`hover holati`) `1.1` marta kattalashadi.
+
+```jsx
+<motion.li
+  whileHover={{ scale: 1.3, color: "#f8e112", originX: 0 }}
+  transition={{ type: "spring", stiffness: 300 }}
+>
+  <span>{topping}</span>
+</motion.li>
+```
+
+- `whileHover={{ ... }}` – Bu qism `hover` qilinganda (sichqoncha ustiga olib borilganda) qanday animatsiya bo‘lishini belgilaydi:
+
+  - `scale: 1.3` → Element 1.3 baravar kattalashadi.
+  - `color: "#f8e112"` → Matn sariq rangga o‘zgaradi.
+  - `originX: 0` → Animatsiya chap tomondan boshlanadi (standart qiymat 0.5, ya’ni markazdan).
+
+- `transition={{ type: "spring", stiffness: 300 }}` – Bu qism animatsiya qanday ishlashini belgilaydi:
+  - `type: "spring"` → Harakat tabiiy prujina (spring) effektida bo‘ladi.
+  - `stiffness: 300` → Prujina qanchalik qattiq ekanligini belgilaydi (qiymat qanchalik katta bo‘lsa, animatsiya shuncha tez bo‘ladi).
