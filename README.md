@@ -13,12 +13,13 @@
 | [1-dars Project Setup][1-dars]           |
 | [2-dars Animating Elements][2-dars]      |
 | [3-dars Initial Animation State][3-dars] |
-| [4-dars Transition Options][4-dars]      |
+| [5-dars Hover Animations][5-dars]        |
 
 [1-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#1-dars-project-setup
 [2-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#2-dars-animating-elements
 [3-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#3-dars-initial-animation-state
 [4-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#4-dars-transition-options
+[5-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#5-dars-hover-animations
 
 ---
 
@@ -195,3 +196,104 @@ import { motion } from "framer-motion";
 - `transition={{ type: "spring", stiffness: 300 }}` – Bu qism animatsiya qanday ishlashini belgilaydi:
   - `type: "spring"` → Harakat tabiiy prujina (spring) effektida bo‘ladi.
   - `stiffness: 300` → Prujina qanchalik qattiq ekanligini belgilaydi (qiymat qanchalik katta bo‘lsa, animatsiya shuncha tez bo‘ladi).
+
+---
+
+## **6-dars Variants (Part-1)**
+
+`variants` – bu Framer Motion da animatsiyani boshqarish uchun ishlatiladigan obyekt. U animatsiya holatlarini (boshlang‘ich, yakuniy va boshqa oraliq holatlar) o‘z ichiga oladi.
+
+```jsx
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+    x: "-100vw",
+  },
+  visible: {
+    x: 0,
+    opacity: 1,
+  },
+};
+
+<motion.div
+  className="base container"
+  variants={containerVariants}
+  initial={"hidden"}
+  animate={"visible"}
+  transition={{ type: "spring", delay: 0.5 }}
+></motion.div>;
+```
+
+- `hidden` – element boshida ekranning chap tomonidan (`-100vw, butun ekran kengligi`) tashqarida bo'ladi va ko'rinmaydi (`opacity: 0`).
+- `visible` – element o'z o'rniga (`x: 0`) keladi va to'liq ko'rinadi (`opacity: 1`).
+
+- `variants={containerVariants}`
+  - `containerVariants` obyektidagi animatsiya holatlarini ishlatadi.
+- `initial={"hidden"}`
+  - Element boshlang'ichda hidden holatda bo'ladi (ya'ni ekranda ko'rinmaydi va chap tomonda).
+- `animate={"visible"}`
+  - Animatsiya boshlangandan keyin visible holatiga o'tadi (ya'ni ekranga chiqadi).
+- `transition={{ type: "spring", delay: 0.5 }}`
+  - Animatsiya `"spring"` (prujinali) turida amalga oshiriladi va `0.5` soniya kechikish bilan boshlanadi.
+
+```jsx
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+    x: "-100vw",
+  },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: { type: "spring", delay: 0.5 },
+  },
+};
+
+<motion.div
+  className="base container"
+  variants={containerVariants}
+  initial={"hidden"}
+  animate={"visible"}
+></motion.div>;
+```
+
+- `transition` - xossasini varants ichiga qo'shib undan foydalanish
+- `animate={"visible"}` - `transition` objecti `visible` objecti ichida ochilgani uchun `motion.div` ga alohida `transition` kalitini ko'rsatib `variants` ga murojaat qilish shart emas
+
+```jsx
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+    x: "-100vw",
+  },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: { type: "spring", delay: 0.5 },
+  },
+};
+
+const nextVariants = {
+  hidden: {
+    x: "-100vw",
+  },
+  visible: {
+    x: 0,
+  },
+  transition: {
+    type: "spring",
+    stiffness: 120,
+  },
+};
+
+<motion.div
+  className="base container"
+  variants={containerVariants}
+  initial={"hidden"}
+  animate={"visible"}
+>
+  <motion.div className="next" variants={nextVariants}></motion.div>
+</motion.div>;
+```
+
+- `containerVariants` va `nextVariants` ning xossali `hidden` va `visible` bir xil nomlangani va `next` classiga ega `motion.div` farzand element bo'lgani hisobiga otasidan meros oladi shuning uchun unga qaysi `variants` dan foydalanish kerakligini ko'rsatishni o'zi yetarli. `initial` va `animate` xossalari esa bu vaziyatda kerak emas
