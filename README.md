@@ -14,12 +14,14 @@
 | [2-dars Animating Elements][2-dars]      |
 | [3-dars Initial Animation State][3-dars] |
 | [5-dars Hover Animations][5-dars]        |
+| [6-dars Variants (Part-1)][6-dars]       |
 
 [1-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#1-dars-project-setup
 [2-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#2-dars-animating-elements
 [3-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#3-dars-initial-animation-state
 [4-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#4-dars-transition-options
 [5-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#5-dars-hover-animations
+[6-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#6-dars-variants-part-1
 
 ---
 
@@ -297,3 +299,62 @@ const nextVariants = {
 ```
 
 - `containerVariants` va `nextVariants` ning xossali `hidden` va `visible` bir xil nomlangani va `next` classiga ega `motion.div` farzand element bo'lgani hisobiga otasidan meros oladi shuning uchun unga qaysi `variants` dan foydalanish kerakligini ko'rsatishni o'zi yetarli. `initial` va `animate` xossalari esa bu vaziyatda kerak emas
+
+---
+
+## **7-dars Variants (Part-2)**
+
+```jsx
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+    x: "-100vw",
+  },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      mass: 0.4,
+      damping: 8,
+      when: "beforeChildren",
+      staggerChildren: 2,
+    },
+  },
+};
+
+const childVariants = {
+  hidden: {
+    opacity: 0,
+  },
+
+  visible: {
+    opacity: 1,
+  },
+};
+
+<motion.div
+  variants={containerVariants}
+  initial="hidden"
+  animate="visible"
+  className="container order"
+>
+  <h2>Thank you for your order :)</h2>
+  <motion.p variants={childVariants}>
+    You ordered a {pizza.base} pizza with:
+  </motion.p>
+
+  <motion.div variants={childVariants}>
+    {pizza.toppings.map((topping) => (
+      <div key={topping}>{topping}</div>
+    ))}
+  </motion.div>
+</motion.div>;
+```
+
+- `transition:`
+  - `"spring"` - elastik harakat qiladi.
+  - `mass: 0.4` - og‘irligi kam, tezroq harakatlanadi.
+  - `damping: 8` - tebranishlarni kamaytirish uchun.
+  - `when: "beforeChildren"` - avval asosiy konteyner ko‘rinadi, keyin bolalar (children).
+  - `staggerChildren: 2` - har bir bola elementi orasida 2 soniya farq bo‘ladi.
