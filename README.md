@@ -15,6 +15,7 @@
 | [3-dars Initial Animation State][3-dars] |
 | [5-dars Hover Animations][5-dars]        |
 | [6-dars Variants (Part-1)][6-dars]       |
+| [7-dars Variants (Part-2)][7-dars]       |
 
 [1-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#1-dars-project-setup
 [2-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#2-dars-animating-elements
@@ -22,6 +23,7 @@
 [4-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#4-dars-transition-options
 [5-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#5-dars-hover-animations
 [6-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#6-dars-variants-part-1
+[7-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#7-dars-variants-part-2
 
 ---
 
@@ -358,3 +360,44 @@ const childVariants = {
   - `damping: 8` - tebranishlarni kamaytirish uchun.
   - `when: "beforeChildren"` - avval asosiy konteyner ko‘rinadi, keyin bolalar (children).
   - `staggerChildren: 2` - har bir bola elementi orasida 2 soniya farq bo‘ladi.
+
+---
+
+## **8-dars Keyframes**
+
+`Keyframes` – bu animatsiya davomida bir nechta oraliq qiymatlarni ketma-ket bajarish imkonini beruvchi usul.
+
+```jsx
+const buttonVariants = {
+  visible: {
+    x: [0, -20, 20, -20, 20, 0],
+    transition: { delay: 2 },
+  },
+
+  hover: {
+    scale: 1.1,
+    textShadow: "0px 0px 8px rgb(255,255,255)",
+    boxShadow: "0px 0px 8px rgb(255,255,255)",
+  },
+};
+
+<motion.button variants={buttonVariants} animate="visible" whileHover="hover">
+  Create Your Pizza
+</motion.button>;
+```
+
+- `visible – tugma sahifaga chiqayotganda bajariladigan animatsiya`
+
+  - `x: [0, -20, 20, -20, 20, 0]` → Keyframes animatsiya bo‘lib, tugma o‘zining joyidan chapga (`-20`), o‘ngga (`20`) tebranib, yana o‘z holatiga qaytadi.
+  - `transition: { delay: 2 }` → Animatsiya 2 soniyadan keyin boshlanadi.
+
+- `hover – foydalanuvchi sichqoncha bilan tugmaga kelganda ishlaydigan animatsiya`
+
+  - `scale: 1.1` → Tugma kattalashadi (1.1 = 110%).
+  - `textShadow` → Matn atrofida oq rangli porlash paydo bo‘ladi.
+  - `boxShadow` → Tugma orqa foniga ham oq rangli porlash qo‘shiladi.
+
+- `motion.button – animatsiyalangan tugma`
+  - `variants={buttonVariants}` → Tugmaga oldindan belgilangan animatsiya variantlari biriktirilmoqda.
+  - `animate="visible"` → Tugma sahifaga chiqayotganda "visible" holati bajarilyapti (chapga-o‘ngga tebranadi).
+  - `whileHover="hover"` → Tugmaga sichqoncha olib borilganda "hover" holati ishlaydi (kattalashadi va porlaydi).
