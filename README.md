@@ -16,6 +16,7 @@
 | [5-dars Hover Animations][5-dars]        |
 | [6-dars Variants (Part-1)][6-dars]       |
 | [7-dars Variants (Part-2)][7-dars]       |
+| [8-dars Keyframes][8-dars]               |
 
 [1-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#1-dars-project-setup
 [2-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#2-dars-animating-elements
@@ -24,6 +25,7 @@
 [5-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#5-dars-hover-animations
 [6-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#6-dars-variants-part-1
 [7-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#7-dars-variants-part-2
+[8-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#8-dars-keyframes
 
 ---
 
@@ -401,3 +403,27 @@ const buttonVariants = {
   - `variants={buttonVariants}` → Tugmaga oldindan belgilangan animatsiya variantlari biriktirilmoqda.
   - `animate="visible"` → Tugma sahifaga chiqayotganda "visible" holati bajarilyapti (chapga-o‘ngga tebranadi).
   - `whileHover="hover"` → Tugmaga sichqoncha olib borilganda "hover" holati ishlaydi (kattalashadi va porlaydi).
+
+---
+
+## **9-dars Repeating Animations**
+
+`Repeating Animations` - deb bir animatsiyani bir necha marta takrorlashga aytiladi
+
+```js
+const buttonVariants = {
+  hover: {
+    scale: 1.1,
+    textShadow: "0px 0px 8px rgb(255,255,255)",
+    boxShadow: "0px 0px 8px rgb(255,255,255)",
+    transition: {
+      yoyo: 10,
+    },
+  },
+};
+<motion.button variants={buttonVariants} animate="visible" whileHover="hover">
+  Create Your Pizza
+</motion.button>;
+```
+
+- `transition`: Bu animatsiyaning qanday amalga oshishini aniqlaydi. Bu yerda `yoyo: 10` bo'lib, u animatsiyani `yoyo` effektida bajaradi. `yoyo` effekti — animatsiya tugmasi bir yo'nalishda ishlaganidan so'ng, orqaga qaytadi. `10` soni esa bu animatsiyaning qaytalanish sonini bildiradi. Ya'ni, tugma ustiga kursorni olib borish va olib chiqish jarayonida animatsiya `10` marta qayta takrorlanadi.
