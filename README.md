@@ -17,6 +17,7 @@
 | [6-dars Variants (Part-1)][6-dars]       |
 | [7-dars Variants (Part-2)][7-dars]       |
 | [8-dars Keyframes][8-dars]               |
+| [9-dars Repeating Animations][9-dars]    |
 
 [1-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#1-dars-project-setup
 [2-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#2-dars-animating-elements
@@ -26,6 +27,7 @@
 [6-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#6-dars-variants-part-1
 [7-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#7-dars-variants-part-2
 [8-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#8-dars-keyframes
+[9-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#9-dars-repeating-animations
 
 ---
 
@@ -427,3 +429,33 @@ const buttonVariants = {
 ```
 
 - `transition`: Bu animatsiyaning qanday amalga oshishini aniqlaydi. Bu yerda `yoyo: 10` bo'lib, u animatsiyani `yoyo` effektida bajaradi. `yoyo` effekti — animatsiya tugmasi bir yo'nalishda ishlaganidan so'ng, orqaga qaytadi. `10` soni esa bu animatsiyaning qaytalanish sonini bildiradi. Ya'ni, tugma ustiga kursorni olib borish va olib chiqish jarayonida animatsiya `10` marta qayta takrorlanadi.
+
+---
+
+## **10-dars Animate Presence**
+
+`AnimatePresence` — bu Framer Motion kutubxonasidagi juda foydali komponent bo‘lib, React'da komponentlar DOM'dan o‘chirilayotganda animatsiya berish uchun ishlatiladi.
+
+```js
+const [showTitle, setShowTitle] = useState(true);
+
+setTimeout(() => {
+  setShowTitle(false);
+}, 4000);
+
+<AnimatePresence>
+  {showTitle && (
+    <motion.h2 exit={{ x: 1000 }} transition={{ duration: 0.1 }}>
+      Thank you for your order :)
+    </motion.h2>
+  )}
+</AnimatePresence>;
+```
+
+- `<AnimatePresence>...</AnimatePresence>`
+  - Bu Framer Motion komponenti.
+  - Uning vazifasi: element DOM’dan o‘chib ketayotganda animatsiya qo‘shish.
+- `<motion.h2 exit={{ x: 1000 }}>`
+  - motion.h2 — bu animatsiyali <h2> elementi.
+  - exit={{ x: 1000 }} — element DOM’dan o‘chayotganda 1000px o‘ng tomonga siljiydi.
+  - transition={{ duration: 0.3 }} — bu harakat 0.3 soniya davom etadi.
