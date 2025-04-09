@@ -18,6 +18,7 @@
 | [7-dars Variants (Part-2)][7-dars]       |
 | [8-dars Keyframes][8-dars]               |
 | [9-dars Repeating Animations][9-dars]    |
+| [10-dars Animate Presence][10-dars]      |
 
 [1-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#1-dars-project-setup
 [2-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#2-dars-animating-elements
@@ -28,6 +29,7 @@
 [7-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#7-dars-variants-part-2
 [8-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#8-dars-keyframes
 [9-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#9-dars-repeating-animations
+[10-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#10-dars-animate-presence
 
 ---
 
@@ -459,3 +461,110 @@ setTimeout(() => {
   - motion.h2 — bu animatsiyali <h2> elementi.
   - exit={{ x: 1000 }} — element DOM’dan o‘chayotganda 1000px o‘ng tomonga siljiydi.
   - transition={{ duration: 0.3 }} — bu harakat 0.3 soniya davom etadi.
+
+---
+
+## **11-dars Animating Routes**
+
+```jsx
+// App.js
+const location = useLocation();
+<AnimatePresence exitBeforeEnter>
+  <Switch location={location} key={location.key}>
+    <Route path="/base">
+      <Base addBase={addBase} pizza={pizza} />
+    </Route>
+    <Route path="/toppings">
+      <Toppings addTopping={addTopping} pizza={pizza} />
+    </Route>
+    <Route path="/order">
+      <Order pizza={pizza} />
+    </Route>
+    <Route path="/">
+      <Home />
+    </Route>
+  </Switch>
+</AnimatePresence>;
+
+// Home.js
+
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      delay: 1.5,
+      duration: 1.5,
+    },
+  },
+
+  exit: {
+    x: "-100vw",
+    transition: { ease: "easeInOut" },
+  },
+};
+
+<motion.div
+  variants={containerVariants}
+  initial="hidden"
+  animate="visible"
+  exit="exit"
+  className="home container"
+></motion.div>;
+
+// Base.js
+
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+    x: "-100vw",
+  },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: { type: "spring", delay: 0.5 },
+  },
+  exit: {
+    x: "-100vw",
+    transition: { ease: "easeInOut" },
+  },
+};
+
+<motion.div
+  className="base container"
+  variants={containerVariants}
+  initial={"hidden"}
+  animate={"visible"}
+  exit="exit"
+></motion.button>
+```
+
+**`App.js`:**
+
+- `useLocation`: Bu React Router hooki bo'lib, hozirgi sahifa manzilini (URL) olishga yordam beradi. Sahifa o'zgarganda animatsiyalarni to'g'ri ishlatish uchun kerak.
+- `AnimatePresence`: `framer-motion` komponenti bo'lib, sahifa o'zgarganda animatsiyalarni qo'llash imkonini beradi. `exitBeforeEnter` atributi bilan yangi sahifa faqat oldingi sahifa to'liq chiqib ketgandan keyin ko'rsatiladi.
+- `Switch`: React Router komponenti bo'lib, URL manziliga mos keladigan komponentni ko'rsatadi.
+- `Route`: Har bir URL manzili uchun mos komponentni render qiladi. Masalan: `/base`, `/toppings`, `/order` va boshqalar.
+- `key={location.key}`: Har bir sahifa o'zgarganda animatsiya to'g'ri ishlashi uchun sahifaga o'ziga xos kalit beradi.
+
+**`Home.js`:**
+
+- `containerVariants`: Bu animatsiya variantlari bo'lib, sahifa ko'rinishini boshqaradi.
+  - `hidden`: Sahifa boshlanishida ko'rinmas.
+  - `visible`: Sahifa ko'rinadigan bo'lib, 1.5 soniya kechikish va 1.5 soniya davomida animatsiya qiladi.
+  - `exit`: Sahifa chiqayotganda chapga siljiydi (`x: "-100vw"`).
+- `motion.div`: Bu `framer-motion` tomonidan taqdim etilgan animatsiyalangan div elementidir. `variants` yordamida sahifani ko'rsatishda animatsiya variantlari qo'llanadi.
+
+**`Base.js`:**
+
+- `containerVariants`: Sahifa ko'rinishi uchun animatsiya variantlari.
+  - `hidden`: Sahifa boshlanishida xususan, chapdan kiradi (`x: "-100vw"`) va `opacity: 0` bo'ladi.
+  - `visible`: Sahifa ekranga kiritiladi va `spring` animatsiyasi bilan ko'rinish yaxshilanadi. `delay` bilan animatsiya kechikadi.
+  - `exit`: Sahifa chiqayotganda chapga siljiydi.
+- `motion.div`: Animatsiyalangan div, sahifa animatsiyalarini qo'llaydi.
+
+**Natija:**
+
+- Bu kod `framer-motion` kutubxonasidan va React Router'dan foydalanib, sahifalar o'rtasida animatsiyalarni qo'llash uchun ishlatiladi. Har bir sahifa uchun animatsiya variantlari belgilangan va sahifa o'zgarganda (URL manzili o'zgarganda) animatsiyalarni qo'llashga imkon beradi.
