@@ -19,6 +19,7 @@
 | [8-dars Keyframes][8-dars]               |
 | [9-dars Repeating Animations][9-dars]    |
 | [10-dars Animate Presence][10-dars]      |
+| [11-dars Animating Routes][11-dars]      |
 
 [1-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#1-dars-project-setup
 [2-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#2-dars-animating-elements
@@ -30,6 +31,7 @@
 [8-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#8-dars-keyframes
 [9-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#9-dars-repeating-animations
 [10-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#10-dars-animate-presence
+[11-dars]: https://github.com/muhriddin20056525/framer-motion?tab=readme-ov-file#11-dars-animating-routes
 
 ---
 
@@ -458,7 +460,7 @@ setTimeout(() => {
   - Bu Framer Motion komponenti.
   - Uning vazifasi: element DOM’dan o‘chib ketayotganda animatsiya qo‘shish.
 - `<motion.h2 exit={{ x: 1000 }}>`
-  - motion.h2 — bu animatsiyali <h2> elementi.
+  - motion.h2 — bu animatsiyali `<h2>` elementi.
   - exit={{ x: 1000 }} — element DOM’dan o‘chayotganda 1000px o‘ng tomonga siljiydi.
   - transition={{ duration: 0.3 }} — bu harakat 0.3 soniya davom etadi.
 
